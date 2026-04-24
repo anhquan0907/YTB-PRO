@@ -96,6 +96,12 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // "Try new features" in settings
 %hook YTSettingsSectionItemManager
 - (void)updatePremiumEarlyAccessSectionWithEntry:(id)arg1 {}
+
+// Remove Patreon block from settings UI when running the open-source build.
+- (id)patreonSection:(id)arg1 { return nil; }
+
+// Avoid creating Patreon login cell in settings models.
+- (id)patreonButtonCellWithType:(NSInteger)arg1 model:(id)arg2 { return nil; }
 %end
 
 // Survey
